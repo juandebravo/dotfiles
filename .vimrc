@@ -1,13 +1,17 @@
 
-"General configuration
+" ======= General configuration =======
 
 set number         "Show line number
 syntax on          "Highlight syntax
 set encoding=utf-8 "Use UTF-8 as the default text encoding
 
+" Autoload plugins
+execute pathogen#infect()
+
+
 " ======= Search settings ======
 set incsearch        "Find the next match as we type the search
-set hlsearch         "Hilight searches by default
+set hlsearch         "Highlight searches by default
 set viminfo='100,f1  "Save up to 100 marks, enable capital marks
 
 
@@ -34,6 +38,9 @@ set laststatus=2
 " Settings for editing C files
 autocmd FileType c setlocal shiftwidth=4 softtabstop=4 expandtab
 
+" Open NERDTree if no file argument
+autocmd vimenter * if !argc() | NERDTree | endif
+
 " ====== Functions ======
 "
 " Example from developerWorks:
@@ -57,6 +64,9 @@ nnoremap - ddp
  
 " map _ to move the current line one line above
 nnoremap _ ddkP
+
+" Open NERDTree
+map <F3> :NERDTreeToggle<CR>
  
 
 

@@ -29,6 +29,11 @@ function fish_right_prompt --description 'Right prompt section'
   	set prompt $prompt (echo -s (set_color red) "↵")
   end
 
+  # k8s
+  set k8sprompt (set_color --bold blue) 'k8s' (set_color normal)
+  set -l k8s_context (kubectl config current-context)
+  set prompt $prompt (echo -s $k8sprompt (set_color --bold green) $k8s_context)
+
   echo -n $prompt
 end
 

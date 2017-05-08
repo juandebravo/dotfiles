@@ -18,7 +18,7 @@ function fish_right_prompt --description 'Right prompt section'
 	  set gitprompt (set_color --bold blue) 'git' (set_color normal)
 
 	  set -l dirty (git status --porcelain ^ /dev/null)
-	  if test "$dirty" -eq ''
+	  if [ "$dirty" = "" ]
 	    set prompt $prompt (echo -s $gitprompt (set_color --bold green) $branch)
 	  else
 	  	set prompt $prompt (echo -s $gitprompt (set_color red) $branch)

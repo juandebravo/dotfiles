@@ -20,9 +20,11 @@ var lapSkype = S.op("corner", {
   "height": "screenSizeY"
 });
 
-var lapMain = lapSkype.dup({"direction": "top-right", "width": "2*screenSizeX/3"});
+var lapMain = lapSkype.dup({"direction": "top-right",
+                            "width": "2*screenSizeX/3"});
 
-var lapMaximize = lapSkype.dup({"direction": "top-left", "width": "screenSizeX"});
+var lapMaximize = lapSkype.dup({"direction": "top-left",
+                                "width": "screenSizeX"});
 
 var lapFocusSublime = S.op("focus", {
   // only one of these is required. if both are specified it will use app.
@@ -44,15 +46,14 @@ var skypeHash = {
 };
 
 var oneMonitorLayout = S.lay("oneMonitor", {
-  "Skype" : skypeHash,
   "Sublime Text 2" : lapMainHash,
   "iTerm" : lapMainHash,
+  "Terminal" : lapMainHash,
   "Google Chrome" : lapMainHash,
   "Xcode" : lapMainHash,
   "GitX" : lapMainHash,
   "Firefox" : lapMainHash,
   "Safari" : lapMainHash,
-  "Outlook" : lapMainHash,
 });
 
 S.def([monitorMac], oneMonitorLayout);

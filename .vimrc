@@ -1,57 +1,85 @@
 
 " ======= General configuration =======
 
+set shell=/bin/bash
 set nocompatible
 set number         "Show line number
-syntax on          "Highlight syntax
+syntax enable      "Highlight syntax
 set encoding=utf-8 "Use UTF-8 as the default text encoding
 set guifont=Monaco:h18
 set backspace=indent,eol,start
 
+let g:ycm_path_to_python_interpreter="/usr/local/bin/python2"
+
+if has('gui_running')
+    set background=light
+else
+    set background=dark
+endif
+
+highlight Normal ctermbg=black
+
 " Switch on filetype detection and loads
 " indent file (indent.vim) for specific file types
-filetype plugin indent on
+" only after vundle
+filetype plugin indent off
 filetype on
 
 " Vundle
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
 " let Vundle manage Vundle
 " required!
-Bundle 'gmarik/vundle'
+Plugin 'VundleVim/Vundle.vim'
 
 " My bundles here:
-"
-"
+
 " git plugin
-Bundle 'tpope/vim-fugitive'
+Plugin 'tpope/vim-fugitive'
+
 " easy movements to a specific word (w) / character (f)
-Bundle 'Lokaltog/vim-easymotion'
+Plugin 'Lokaltog/vim-easymotion'
+
 " write HTML code faster
-Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
+Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+
 " Runtime Path Manipulation
-Bundle 'tpope/vim-pathogen'
+Plugin 'tpope/vim-pathogen'
+
 " Syntax errors
-Bundle 'scrooloose/syntastic'
+Plugin 'scrooloose/syntastic'
+
+" Solarized
+Plugin 'altercation/vim-colors-solarized'
 
 " vim-scripts repos
-Bundle 'L9'
-Bundle 'FuzzyFinder'
-Bundle 'Valloric/YouCompleteMe'
-Bundle 'scrooloose/nerdtree'
+Plugin 'L9'
+Plugin 'FuzzyFinder'
+
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'scrooloose/nerdtree'
+
 " non-GitHub repos
-Bundle 'git://git.wincent.com/command-t.git'
+Plugin 'git://git.wincent.com/command-t.git'
+
+call vundle#end()            " required
+filetype plugin indent on    " required
 
 " End vundle
 
 " Autoload plugins
 execute pathogen#infect()
 
+" Include after pathogen for autoloading
+colorscheme solarized
+
 " ====== Cursor line settings ======
 set cursorline
-hi CursorLine   cterm=NONE ctermbg=darkgray
+" hi CursorLine cterm=NONE ctermbg=darkgray
+" This is how solarize defines it
+hi CursorLine ctermbg=0 guibg=Grey40
 
 " ====== Cursor settings ======
 highlight Cursor guifg=white guibg=black
@@ -113,13 +141,13 @@ map <F2> :execute ToggleSyntax()<CR>
 nnoremap - ddp
 
 " unmap -
- 
+
 " map _ to move the current line one line above
 nnoremap _ ddkP
 
 " Open NERDTree
 map <F3> :NERDTreeToggle<CR>
- 
+
 " Syntax checkers (syntastic)
 " let g:syntastic_python_checkers=['pylint']
 let g:syntastic_python_checkers=['pep8']
@@ -193,6 +221,13 @@ let mapleader = ","
 
 " Easy motion mapping
 let g:EasyMotion_leader_key = '<Leader><Leader>'
+
+" Vertical insertions
+" Press ctrl + v to select first character in first line and press l to select
+" more
+" Press j to extend the visual block in  multiple lines
+" Press c to go in to inset mode and type words(what you want to insert)
+" Press Esc
 
 """"""""""""""""
 "     CTAGS    "

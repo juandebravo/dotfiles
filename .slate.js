@@ -9,7 +9,7 @@ S.cfga({
     "undoOps": ""
 });
 
-var monitorMac = "1680x1050";
+var monitorMac = "1920x1200";
 var monitorTID = "1920x1080";
 
 // Operations

@@ -4,7 +4,7 @@
 abbr gcm 'git commit -m'
 abbr gca 'git commit --amend'
 abbr gco 'git checkout'
-abbr gph 'git push origin (git rev-parse --abbrev-ref HEAD) --force-with-lease'
+abbr gph 'git push -u origin (git rev-parse --abbrev-ref HEAD) --force-with-lease'
 
 abbr kgd 'kubectl get deployments'
 abbr kgp 'kubectl get pods'

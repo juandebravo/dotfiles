@@ -9,15 +9,15 @@ function fish_right_prompt --description 'Right prompt section'
   	set pyenv "$PYENV_LOCAL_VERSION"
   end
   if test $pyenv
-    set prompt $prompt (echo -s (set_color --bold blue) 'py' (set_color normal) (set_color yellow) $pyenv)
+    set prompt $prompt (echo -s (set_color --bold blue) 'py ' (set_color normal) (set_color green) $pyenv)
   end
 
   # git
-  set -l branch (git rev-parse --abbrev-ref HEAD ^ /dev/null)
+  set -l branch (git branch --show-current -q 2>/dev/null)
   if test $branch
 	  set gitprompt (set_color --bold blue) 'git' (set_color normal)
 
-	  set -l dirty (git status --porcelain ^ /dev/null)
+	  set -l dirty (git status --porcelain 2>/dev/null)
 	  if [ "$dirty" = "" ]
 	    set prompt $prompt (echo -s $gitprompt (set_color --bold green) $branch)
 	  else
